@@ -1,0 +1,14 @@
+localhost:80
+
+reverse_proxy {
+	to		caddy1:80
+	to		caddy2:80
+	to		caddy3:80
+	to		caddy4:80
+	lb_policy       round_robin
+	health_uri	/status.html
+	health_interval 10s
+	health_passes	3
+	health_status	200
+	health_body	"OK"
+}
